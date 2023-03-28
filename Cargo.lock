@@ -1071,6 +1071,7 @@ dependencies = [
  "axum",
  "dotenv",
  "mongodb",
+ "ring",
  "serde",
  "tokio",
  "tower-http",

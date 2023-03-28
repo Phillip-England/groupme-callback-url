@@ -7,6 +7,9 @@ use routes::create_routes::create_routes;
 
 #[tokio::main]
 async fn main() {
+    // welcome message
+    println!("Starting server on port 8000");
+
     // loading env
     dotenv().ok();
 
@@ -18,7 +21,7 @@ async fn main() {
 
     // setting up router
     let app = create_routes(client);
-     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
+     axum::Server::bind(&"0.0.0.0:8000".parse().unwrap())
        .serve(app.await.into_make_service())
        .await
        .unwrap();
