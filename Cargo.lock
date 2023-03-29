@@ -1073,6 +1073,7 @@ dependencies = [
  "mongodb",
  "ring",
  "serde",
+ "serde_json",
  "tokio",
  "tower-http",
 ]

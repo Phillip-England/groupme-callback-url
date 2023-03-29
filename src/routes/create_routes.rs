@@ -1,10 +1,12 @@
 use axum::{
   http::Method,
   routing::post, 
-  Router
+  Router, Json
 };
 use mongodb::Client;
 use tower_http::cors::{Any, CorsLayer};
+use serde_json::{json, Value};
+
 
 pub async fn create_routes(client: Client) -> Router {
 
@@ -13,9 +15,9 @@ pub async fn create_routes(client: Client) -> Router {
         .allow_origin(Any);
 
     return Router::new()
-    .route("/", post(|| async { 
+    .route("/", post(|Json(payload): Json<serde_json::Value>| async { 
       println!("HIT");
-      "Hello, world!" 
+      dbg!(payload);
     }))
     .layer(cors)
 }
