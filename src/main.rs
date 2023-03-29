@@ -19,10 +19,14 @@ async fn main() {
     client_options.max_pool_size = Some(10);
     let client = Client::with_options(client_options).unwrap();
 
+    // setting up port
+    let port = env::var("PORT").unwrap();
+    let addr = format!("0.0.0.0:{}", port);
+
     // setting up router
     let app = create_routes(client);
-     axum::Server::bind(&"0.0.0.0:8000".parse().unwrap())
-       .serve(app.await.into_make_service())
-       .await
-       .unwrap();
+    axum::Server::bind(&addr.parse().unwrap())
+        .serve(app.await.into_make_service())
+        .await
+        .unwrap();
 }
