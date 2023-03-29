@@ -16,6 +16,6 @@ COPY . .
 
 RUN cargo install --path .
 
-CMD ["myapp"]
-
 EXPOSE 8000
+
+CMD ["rust-api"]
